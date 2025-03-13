@@ -1,0 +1,49 @@
+---
+import type {GetStaticPathsOptions, Page} from "astro"
+import {CollectionEntry, getCollection} from "astro:content"
+import H1 from "../../components/H1.astro"
+import Main from "../../components/Main.astro"
+import Layout from "../../layouts/Layout.astro"
+import PostList from "../../components/PostList.astro"
+import Pagination from "../../components/Pagination.astro"
+import CategoryList from "../../components/CategoryList.astro"
+
+export async function getStaticPaths({paginate}: GetStaticPathsOptions) {
+    const allPosts = await getCollection("posts")
+    return paginate(allPosts, {pageSize: 6})
+}
+type Props = {
+    page: Page
+}
+const {page} = Astro.props
+const posts = page.data as CollectionEntry<"posts">[]
+const allCategories = posts.flatMap(post => post.data.categories)
+const categories = Array.from(new Set(allCategories))
+---
+
+<Layout>
+    <Main>
+        <H1 text={`EmergEdge Blog - Page ${page.currentPage}`} />
+        <p class="text-blue-900 text-2xl mb-24 max-sm:mb-14">
+            Join the Emerged Technologies, IT and Project Management Community
+            and learn from Experience
+        </p>
+
+        <div
+            class="grid grid-cols-[auto,1fr] gap-x-14 gap-y-3 mb-16 max-lg:grid-cols-1"
+        >
+            <span class="font-bold text-5xl text-blue-900">Tags</span>
+            <CategoryList categories={categories} />
+        </div>
+        <div class="mb-12">
+            <Pagination prevURL={page.url.prev} nextURL={page.url.next} />
+        </div>
+
+        <div class="mb-32">
+            <PostList posts={posts} />
+        </div>
+        <div class="mb-36">
+            <Pagination prevURL={page.url.prev} nextURL={page.url.next} />
+        </div>
+    </Main>
+</Layout>

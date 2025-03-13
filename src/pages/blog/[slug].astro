@@ -1,0 +1,89 @@
+---
+import {CollectionEntry, getCollection} from "astro:content"
+import {Image, getImage} from "astro:assets"
+
+import Layout from "../../layouts/Layout.astro"
+import PostList from "../../components/PostList.astro"
+import CategoryList from "../../components/CategoryList.astro"
+import Share from "../../components/Share.astro"
+import TableOfContents from "../../components/TableOfContents.astro"
+import PostMeta from "../../components/PostMeta.astro"
+import Main from "../../components/Main.astro"
+import H1 from "../../components/H1.astro"
+
+export const getStaticPaths = async () => {
+    const posts = await getCollection("posts")
+
+    const paths = posts.map(post => {
+        const relatedPosts = posts
+            .filter(p => p.slug !== post.slug)
+            .filter(p =>
+                p.data.categories.some(category =>
+                    post.data.categories.includes(category),
+                ),
+            )
+
+        return {
+            params: {
+                slug: post.slug,
+            },
+            props: {
+                post,
+                relatedPosts,
+            },
+        }
+    })
+
+    return paths
+}
+
+type Props = {
+    post: CollectionEntry<"posts">
+    relatedPosts: CollectionEntry<"posts">[]
+}
+
+const {post, relatedPosts} = Astro.props
+const {Content, headings} = await post.render()
+const coverImageSource = (await getImage({src: post.data.image})).src
+---
+
+<Layout title={post.data.title} image={coverImageSource}>
+    <Main>
+        <a href="/blog" class="text-yellow-600 text-2xl mb-16 underline block"
+            >← Back to all blogs</a
+        >
+
+        <div class="mb-4">
+            <CategoryList categories={post.data.categories} />
+        </div>
+
+        <H1 text={post.data.title} />
+
+        <PostMeta post={post} />
+
+        <Image
+            src={post.data.image}
+            alt={post.data.title}
+            width={1024}
+            height={1024 / 1.5}
+            format="webp"
+            class="rounded-2xl shadow-xl mb-28 aspect-thumbnail object-cover"
+        />
+
+        <div class="mb-10">
+            <TableOfContents headings={headings} />
+        </div>
+        <div class="relative">
+            <Share post={post} />
+
+            <div class="prose prose-2xl overflow-visible relative">
+                <Content />
+            </div>
+        </div>
+    </Main>
+
+    <div class="px-24 pt-56 pb-80 max-w-7xl mx-auto">
+        <p class="font-bold text-blue-900 text-4xl mb-16">Related posts</p>
+        <PostList posts={relatedPosts} />
+    </div>
+</Layout>
