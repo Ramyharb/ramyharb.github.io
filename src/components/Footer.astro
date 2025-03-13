@@ -8,19 +8,39 @@
     </p>
 
     <form
+        action="https://api.web3forms.com/submit   "
+        method="post"
         class="grid grid-cols-[1fr,auto] mx-auto items-end mb-36 gap-x-4 max-w-xl max-sm:grid-cols-1 gap-y-4"
     >
+        <input
+            type="hidden"
+            name="access_key"
+            value="a9bc4f94-bef8-430a-ae5d-f3fc70d0d8a8"
+        />
+
         <div class="flex flex-col items-start">
+            <label for="newsletterEmail" class="text-white text-lg mb-2">
+                Your Name</label
+            >
+            <input
+                type="text"
+                name="name"
+                id="name"
+                class="bg-blue-950 border-2 border-white rounded-lg w-full text-white px-4 text-lg h-16"
+                placeholder="full name"
+                required
+            />
             <label for="newsletterEmail" class="text-white text-lg mb-2">
                 Email address</label
             >
-
             <input
                 type="email"
                 name="newsletterEmail"
                 id="newsletterEmail"
                 autocomplete="email"
                 class="bg-blue-950 border-2 border-white rounded-lg w-full text-white px-6 text-lg h-16"
+                placeholder="your email"
+                required
             />
         </div>
 
