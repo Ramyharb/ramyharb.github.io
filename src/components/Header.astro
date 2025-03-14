@@ -1,5 +1,5 @@
 ---
-import {Image} from "astro:assets"
+// import {Image} from "astro:assets"
 ---
 
 <header
@@ -11,15 +11,10 @@ import {Image} from "astro:assets"
             alt="EE Logo"
             width={50}
             height={50}
+            format="png"
+             class="w-16"
         /> -->
-        <Image
-            src="./EE_Logo.png"
-            alt="EmergEd Logo"
-            width={64}
-            height={64}
-            format="webp"
-            class="w-16"
-        />
+        <img src="/EE_Logo.png" alt="EmergEd Logo" width={64} height={64} />
 
         <p class="uppercase text-3xl text-blue-900">blog</p>
     </a>
