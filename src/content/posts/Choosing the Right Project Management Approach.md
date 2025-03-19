@@ -2,7 +2,7 @@
 author: ramy-harb
 categories: ["Project", "Agile", "Waterfall"]
 date: 03/20/2025
-featured: true
+featured: false
 image: ./images/Agile_vs_waterfall.jpg
 title: Choosing the Right Project Management Approach
 ---
