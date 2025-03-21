@@ -1,7 +1,7 @@
 ---
 author: ramy-harb
 categories: ["Datacenter", "Microsoft", "Natick", "Project"]
-date: 03/12/2025
+date: 03/21/2025
 featured: false
 image: ./images/Natick.jpg
 title: Why Microsoft Abandoned Its Successful Underwater Data Center Project
