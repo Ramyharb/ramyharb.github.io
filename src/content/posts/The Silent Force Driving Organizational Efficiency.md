@@ -1,7 +1,7 @@
 ---
 author: ramy-harb
 categories: ["IT", "Project", "EA"]
-date: 29/04/2025
+date: 04/29/2025
 featured: false
 image: ./images/EA.png
 title: Enterprise Architecture - The Silent Force Driving Organizational Efficiency
