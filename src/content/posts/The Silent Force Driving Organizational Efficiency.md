@@ -4,7 +4,7 @@ categories: ["IT", "Project", "EA"]
 date: 29/04/2025
 featured: false
 image: ./images/EA.png
-title: BEnterprise Architecture: The Silent Force Driving Organizational Efficiency
+title: Enterprise Architecture - The Silent Force Driving Organizational Efficiency
 ---
 
 Enterprise Architecture (EA) is a strategic enabler that aligns technology, processes, and resources with business goals. By enhancing visibility, promoting resource reusability, and clarifying ownership, EA drives operational efficiency, cost savings, and innovation. This article explores the critical role of EA in modern organizations, the benefits it delivers, common challenges, and how to embed it as a core component of business strategy.
